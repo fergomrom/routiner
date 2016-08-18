@@ -5,11 +5,12 @@ var mongoose = require('mongoose');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
-var routines = require('./routes/routines.js');
+var routines = require('./routes/routines');
+var database = require('./config/database');
 
 var app = express();
 
-mongoose.connect('mongodb://localhost/routiner');
+mongoose.connect('mongodb://'+database.url+':'+database.port+'/'+database.name);
 db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 
@@ -23,7 +24,11 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', routines);
+app.use('/api', routines);
+
+app.get('*', function(req, res) {
+    res.sendfile('./public/index.html'); // load the single view file (angular will handle the page changes on the front-end)
+});
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

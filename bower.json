@@ -1,0 +1,23 @@
+{
+  "name": "routine",
+  "description": "",
+  "main": "server.js",
+  "authors": [
+    "Fernando Gómez"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/ferkaz/routiner",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^3.3.7",
+    "angular": "^1.5.8",
+    "angular-resource": "^1.5.8"
+  }
+}
