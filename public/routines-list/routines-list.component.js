@@ -24,7 +24,11 @@ angular.
                     self.modifiedRoutine = {};
                     self.routines = Rest.query();
                 };
+                
+                self.checkRoutine = function(routineId, checked) {
+                    Rest.update({'routineId': routineId}, {'checked': checked});
 
+                };
             }
         ]
     });

@@ -5,7 +5,9 @@ var mongoose = require('mongoose');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
-var routines = require('./routes/routines');
+var routinesRoute = require('./routes/routines');
+var categoriesRoute = require('./routes/categories');
+
 var database = require('./config/database');
 
 var app = express();
@@ -24,7 +26,8 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/api', routines);
+app.use('/api', routinesRoute);
+app.use('/api', categoriesRoute);
 
 app.get('*', function(req, res) {
     res.sendfile('./public/index.html'); // load the single view file (angular will handle the page changes on the front-end)

@@ -12,22 +12,26 @@
     <div class="col-md-10">
       <!--Body content-->
 
-      <ul class="routines">
+      <ul class="routines list-unstyled">
           <li ng-repeat="routine in $ctrl.routines | filter:$ctrl.query">
-          <span ng-click="cliki = !cliki" ng-show="!cliki">{{routine.description}}
-              <button class="btn btn-danger btn-xs glyphicon glyphicon-remove" ng-click="$ctrl.removeRoutine(routine._id)" aria-hidden="true"></button>
+              <input type="checkbox" ng-model="routine.checked" ng-click="$ctrl.checkRoutine(routine._id, routine.checked)"> 
+              <span class="checked-{{routine.checked}}" ng-click="cliki = !cliki" ng-show="!cliki">
+                 {{routine.description}}
+                  <button class="btn btn-danger btn-xs glyphicon glyphicon-remove" ng-click="$ctrl.removeRoutine(routine._id)" aria-hidden="true"></button>
           </span>
           <span ng-show="cliki">
               <input ng-model="$ctrl.modifiedRoutine.description" placeholder="{{routine.description}}" />
-              <button type="submit" class="btn btn-primary btn-xs" ng-click="$ctrl.modifyRoutine(routine._id)">Modify</button>
-              <button type="submit" class="btn btn-danger btn-xs" ng-click="cliki = !cliki">Cancel</button>
+              <div class="btn-group btn-group-xs">
+                  <button type="submit" class="btn btn-primary" ng-click="$ctrl.modifyRoutine(routine._id)">Modify</button>
+                  <button type="submit" class="btn btn-danger" ng-click="cliki = !cliki">Cancel</button>
+              </div>
           </span>
           </li>
       </ul>
       <p>
-        Insert new routine:
-        <input ng-model="$ctrl.newRoutine.description" placeholder="Write your new routine" />
-        <button type="submit" class="btn btn-primary btn-sm" ng-click="$ctrl.createRoutine()">Add</button>
+      Insert new routine:
+      <input ng-model="$ctrl.newRoutine.description" placeholder="Write your new routine" />
+      <button type="submit" class="btn btn-primary btn-sm" ng-click="$ctrl.createRoutine()">Add</button>
       </p>
 
     </div>
