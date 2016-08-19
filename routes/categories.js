@@ -11,6 +11,16 @@ router.get('/categories', function(req, res) {
 
 });
 
+// READ
+router.get('/categories/:category_id', function(req, res) {
+    Category.findById(req.params.category_id, function(err, categories) {
+        if (err) res.send(err);
+        res.json(categories);
+    });
+
+});
+
+
 //CREATE
 router.post('/categories', function(req, res) {
     Category.create(req.body, function(err, category) {
@@ -19,20 +29,20 @@ router.post('/categories', function(req, res) {
     });
 });
 
-// UPDATE
-//router.put('/routines/:routine_id', function(req, res) {
-    //Routine.findByIdAndUpdate(req.params.routine_id, req.body, function(err, routine) {
-        //if (err) res.send(err);
-        //res.json(routine);
-    //});
-//});
+//UPDATE
+router.put('/categories/:category_id', function(req, res) {
+    Category.findByIdAndUpdate(req.params.category_id, req.body, function(err, category) {
+        if (err) res.send(err);
+        res.json(category);
+    });
+});
 
 // DELETE
-//router.delete('/routines/:routine_id', function(req, res) {
-    //Routine.findByIdAndRemove(req.params.routine_id, req.body, function(err, routine) {
-        //if (err) res.send(err);
-        //res.json(routine);
-    //});
-//});
+router.delete('/categories/:category_id', function(req, res) {
+    Category.findByIdAndRemove(req.params.category_id, req.body, function(err, category) {
+        if (err) res.send(err);
+        res.json(category);
+    });
+});
 
 module.exports = router;

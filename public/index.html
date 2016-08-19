@@ -5,6 +5,8 @@
     <title>Routiner</title>
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
     <link rel="stylesheet" href="app.css" />
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="bower_components/angular/angular.js"></script>
     <script src="bower_components/angular-resource/angular-resource.js"></script>
     <script src="app.module.js"></script>
@@ -15,7 +17,14 @@
   </head>
   <body>
 
-    <routines-list></routines-list>
+  <nav class="navbar navbar-inverse">
+      <div class="container-fluid">
+          <div class="navbar-header">
+              <a class="navbar-brand" href="#">Routiner</a>
+          </div>
+      </div>
+  </nav>
+  <routines-list></routines-list>
 
   </body>
 </html>

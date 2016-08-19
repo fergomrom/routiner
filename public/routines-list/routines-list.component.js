@@ -2,31 +2,42 @@ angular.
     module('routinesList').
     component('routinesList', {
         templateUrl: 'routines-list/routines-list.template.html',
-        controller: ['Rest',
-            function PhoneListController(Rest) {
+        controller: ['Api',
+            function RoutinesListController(Api) {
                 var self = this;
 
-                self.routines = Rest.query();
+                self.routines = Api.Routines.query();
+                self.categories= Api.Categories.query();
 
-                self.createRoutine = function() {
-                    Rest.save(self.newRoutine);
+                self.createRoutine = function(categoryId) {
+                    self.newRoutine.categoryId = categoryId;
+                    Api.Routines.save(self.newRoutine);
                     self.newRoutine = {};
-                    self.routines = Rest.query();
+                    self.routines = Api.Routines.query();
                 };
-                
+
+                self.createCategory = function() {
+                    var str = self.newCategory.name.replace(/\s+/g, '');
+                    console.log(str);
+                    self.newCategory.urlName = str;
+                    Api.Categories.save(self.newCategory);
+                    self.newCategory = {};
+                    self.categories = Api.Categories.query();
+                };
+
                 self.removeRoutine = function(routineId) {
-                    Rest.remove({'routineId': routineId});
-                    self.routines = Rest.query();
+                    Api.Routines.remove({'id': routineId});
+                    self.routines = Api.Routines.query();
                 };
  
                 self.modifyRoutine = function(routineId) {
-                    Rest.update({'routineId': routineId}, self.modifiedRoutine);
+                    Api.Routines.update({'id': routineId}, self.modifiedRoutine);
                     self.modifiedRoutine = {};
-                    self.routines = Rest.query();
+                    self.routines = Api.Routines.query();
                 };
                 
                 self.checkRoutine = function(routineId, checked) {
-                    Rest.update({'routineId': routineId}, {'checked': checked});
+                    Api.Routines.update({'id': routineId}, {'checked': checked});
 
                 };
             }

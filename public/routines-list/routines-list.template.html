@@ -1,39 +1,59 @@
 <div class="container-fluid">
-  <div class="row">
-    <div class="col-md-2">
-      <!--Sidebar content-->
 
-      <p>
-        Search:
-        <input ng-model="$ctrl.query" />
-      </p>
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
 
+            <div class="panel with-nav-tabs panel-default">
+                <div class="panel-heading">
+                    <!-- Nav tabs -->
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li ng-class="{active: $index == 0}" ng-repeat="category in $ctrl.categories | limitTo:5:catIndex"><a href="#{{category.urlName}}" role="tab" data-toggle="tab">{{category.name}}</a></li>
+                        <div ng-show="$ctrl.categories.length>=5">
+                        <button type="submit" class="btn btn-default btn-xs glyphicon glyphicon-plus" ng-click="catIndex =+5"/>
+                        <button type="submit" class="btn btn-default btn-xs glyphicon glyphicon-minus" ng-click="catIndex =-5"/>
+                        </div>
+                    <div class="text-right">
+                        <input ng-model="$ctrl.newCategory.name" placeholder="New Category" />
+                        <button type="submit" class="btn btn-primary btn-sm" ng-click="$ctrl.createCategory()">Add</button>
+                    </div>
+ 
+                    </ul>
+                </div>
+                <div class="panel-body">
+
+                    <!--Body content-->
+
+                    <div class="tab-content">
+                        <div class="tab-pane fade in" ng-class="{active: $index == 0}" ng-repeat="category in $ctrl.categories" id="{{category.urlName}}">
+                            <ul class="routines list-unstyled">
+                                <li ng-repeat="routine in $ctrl.routines | filter:category._id">
+                                <input type="checkbox" ng-model="routine.checked" ng-click="$ctrl.checkRoutine(routine._id, routine.checked)"> 
+                                <span ng-show="!showModifier">
+                                    <span class="checked-{{routine.checked}}" ng-click="showModifier = !showModifier">{{routine.description}}</span>
+                                    <button class="btn btn-danger btn-xs glyphicon glyphicon-remove" ng-click="confirmRemove = !confirmRemove" aria-hidden="true" ng-show="!confirmRemove"/>
+                                        <button class="btn btn-danger btn-sm" ng-click="$ctrl.removeRoutine(routine._id)" ng-show="confirmRemove">Are you sure?</button>
+                                    </span>
+                                    <span ng-show="showModifier">
+                                        <input ng-model="$ctrl.modifiedRoutine.description" placeholder="{{routine.description}}" />
+                                        <div class="btn-group btn-group-xs">
+                                            <button type="submit" class="btn btn-primary" ng-click="$ctrl.modifyRoutine(routine._id)">Modify</button>
+                                            <button type="submit" class="btn btn-warning" ng-click="showModifier = !showModifier">Cancel</button>
+                                        </div>
+                                    </span>
+                                    </li>
+                                </ul>
+                                <p>
+                                Insert new routine in {{category.name}} category:
+                                <input ng-model="$ctrl.newRoutine.description" placeholder="Write your new routine" />
+                                <button type="submit" class="btn btn-primary btn-sm" ng-click="$ctrl.createRoutine(category._id)">Add</button>
+                                </p>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="col-md-10">
-      <!--Body content-->
-
-      <ul class="routines list-unstyled">
-          <li ng-repeat="routine in $ctrl.routines | filter:$ctrl.query">
-              <input type="checkbox" ng-model="routine.checked" ng-click="$ctrl.checkRoutine(routine._id, routine.checked)"> 
-              <span class="checked-{{routine.checked}}" ng-click="cliki = !cliki" ng-show="!cliki">
-                 {{routine.description}}
-                  <button class="btn btn-danger btn-xs glyphicon glyphicon-remove" ng-click="$ctrl.removeRoutine(routine._id)" aria-hidden="true"></button>
-          </span>
-          <span ng-show="cliki">
-              <input ng-model="$ctrl.modifiedRoutine.description" placeholder="{{routine.description}}" />
-              <div class="btn-group btn-group-xs">
-                  <button type="submit" class="btn btn-primary" ng-click="$ctrl.modifyRoutine(routine._id)">Modify</button>
-                  <button type="submit" class="btn btn-danger" ng-click="cliki = !cliki">Cancel</button>
-              </div>
-          </span>
-          </li>
-      </ul>
-      <p>
-      Insert new routine:
-      <input ng-model="$ctrl.newRoutine.description" placeholder="Write your new routine" />
-      <button type="submit" class="btn btn-primary btn-sm" ng-click="$ctrl.createRoutine()">Add</button>
-      </p>
-
-    </div>
-  </div>
 </div>
