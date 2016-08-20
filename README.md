@@ -30,6 +30,14 @@ Then you can check the configuration files on `config/settings.js` where you can
 };
 ```
 
+You can run the application using npm start:
+
+```
+npm start
+```
+
+By default it runs on [http://localhost:3000](http://localhost:3000).
+
 ### Docker
 
 Routiner can be also run on Docker. After you have cloned the repo, just use Docker Compose and you will have the application running on port 3000:
@@ -39,6 +47,8 @@ git clone https://github.com/ferkaz/routiner.git
 cd routiner
 docker-compose up -d
 ```
+
+Then go to [http://localhost:3000](http://localhost:3000).
 
 Dockerfile was created thanks to [Bitnami Stacksmith](https://stacksmith.bitnami.com/).
 
