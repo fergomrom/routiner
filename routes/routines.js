@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var Routine = require('../model/routine.js');
+var Routine = require('../model/routine');
 
 // READ
 router.get('/routines', function(req, res) {

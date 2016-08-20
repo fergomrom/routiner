@@ -5,14 +5,16 @@ var mongoose = require('mongoose');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
+var crontab = require('./cron');
+
 var routinesRoute = require('./routes/routines');
 var categoriesRoute = require('./routes/categories');
 
-var database = require('./config/database');
+var settings = require('./config/settings');
 
 var app = express();
 
-mongoose.connect('mongodb://'+database.url+':'+database.port+'/'+database.name);
+mongoose.connect('mongodb://'+settings.database.host+':'+settings.database.port+'/'+settings.database.dbName);
 db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 
@@ -41,5 +43,4 @@ app.use(function(req, res, next) {
 });
 
 app.listen(3000);
-
 console.log("App listening on port 3000");

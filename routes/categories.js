@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var Category = require('../model/category.js');
+var Category = require('../model/category');
 
 // READ
 router.get('/categories', function(req, res) {

@@ -29,15 +29,19 @@
                                 <li ng-repeat="routine in $ctrl.routines | filter:category._id">
                                 <input type="checkbox" ng-model="routine.checked" ng-click="$ctrl.checkRoutine(routine._id, routine.checked)"> 
                                 <span ng-show="!showModifier">
-                                    <span class="checked-{{routine.checked}}" ng-click="showModifier = !showModifier">{{routine.description}}</span>
-                                    <button class="btn btn-danger btn-xs glyphicon glyphicon-remove" ng-click="confirmRemove = !confirmRemove" aria-hidden="true" ng-show="!confirmRemove"/>
-                                        <button class="btn btn-danger btn-sm" ng-click="$ctrl.removeRoutine(routine._id)" ng-show="confirmRemove">Are you sure?</button>
+                                    <span class="checked-{{routine.checked}}" ng-click="routine.checked=!routine.checked;$ctrl.checkRoutine(routine._id, routine.checked)">{{routine.description}}</span>
+                                    <button class="btn btn-default btn-xs glyphicon glyphicon-pencil" ng-click="confirmRemove = !confirmRemove" aria-hidden="true" ng-show="!confirmRemove"/>
+                                        <div class="btn-group btn-group-xs" ng-show="confirmRemove">
+                                        <button class="btn btn-warning" ng-click="showModifier = !showModifier">Modify</button>
+                                        <button class="btn btn-danger" ng-click="$ctrl.removeRoutine(routine._id)">Remove</button>
+                                        <button class="btn btn-primary" ng-click="confirmRemove = !confirmRemove">Cancel</button>
+                                    </div>
                                     </span>
                                     <span ng-show="showModifier">
                                         <input ng-model="$ctrl.modifiedRoutine.description" placeholder="{{routine.description}}" />
                                         <div class="btn-group btn-group-xs">
-                                            <button type="submit" class="btn btn-primary" ng-click="$ctrl.modifyRoutine(routine._id)">Modify</button>
-                                            <button type="submit" class="btn btn-warning" ng-click="showModifier = !showModifier">Cancel</button>
+                                            <button type="submit" class="btn btn-warning" ng-click="$ctrl.modifyRoutine(routine._id)">Modify</button>
+                                            <button type="submit" class="btn btn-primary" ng-click="showModifier = !showModifier">Cancel</button>
                                         </div>
                                     </span>
                                     </li>
@@ -46,8 +50,8 @@
                                 Insert new routine in {{category.name}} category:
                                 <input ng-model="$ctrl.newRoutine.description" placeholder="Write your new routine" />
                                 <button type="submit" class="btn btn-primary btn-sm" ng-click="$ctrl.createRoutine(category._id)">Add</button>
+                                <button type="submit" class="btn btn-danger btn-sm pull-right" ng-click="$ctrl.removeCategory(category._id)">Remove {{category.name}} category</button>
                                 </p>
-
                             </div>
                         </div>
 

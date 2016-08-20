@@ -30,6 +30,11 @@ angular.
                     self.routines = Api.Routines.query();
                 };
  
+                self.removeCategory = function(categoryId) {
+                    Api.Categories.remove({'id': categoryId});
+                    self.categories = Api.Categories.query();
+                };
+ 
                 self.modifyRoutine = function(routineId) {
                     Api.Routines.update({'id': routineId}, self.modifiedRoutine);
                     self.modifiedRoutine = {};
