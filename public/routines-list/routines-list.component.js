@@ -2,15 +2,17 @@ angular.
     module('routinesList').
     component('routinesList', {
         templateUrl: 'routines-list/routines-list.template.html',
-        controller: ['Api',
-            function RoutinesListController(Api) {
+        controller: ['Api', 'filterFilter',
+            function RoutinesListController(Api, filterFilter) {
                 var self = this;
+var filteredRoutines;
 
                 self.routines = Api.Routines.query();
                 self.categories= Api.Categories.query();
 
-                self.createRoutine = function(categoryId) {
+                self.createRoutine = function(categoryId, per) {
                     self.newRoutine.categoryId = categoryId;
+                    self.newRoutine.periodicity = per;
                     Api.Routines.save(self.newRoutine);
                     self.newRoutine = {};
                     self.routines = Api.Routines.query();
@@ -32,6 +34,10 @@ angular.
  
                 self.removeCategory = function(categoryId) {
                     Api.Categories.remove({'id': categoryId});
+                    filteredRoutines = filterFilter(self.routines, categoryId);
+                    filteredRoutines.forEach( function (routine){
+                        Api.Routines.remove({'id': routine._id});
+                    });
                     self.categories = Api.Categories.query();
                 };
  
