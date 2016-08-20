@@ -14,7 +14,9 @@ var settings = require('./config/settings');
 
 var app = express();
 
-mongoose.connect('mongodb://'+settings.database.host+':'+settings.database.port+'/'+settings.database.dbName);
+var mongoHost = process.env.MONGO_HOST || settings.database.host;
+
+mongoose.connect('mongodb://'+mongoHost+':'+settings.database.port+'/'+settings.database.dbName);
 db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 

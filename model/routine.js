@@ -5,7 +5,7 @@ var routineSchema = mongoose.Schema({
     checked: { type: Boolean, default: false },
     categoryId: mongoose.Schema.ObjectId,
     created: { type: Date, default: Date.now },
-    periodicty: String
+    periodicity: String
 });
 
 module.exports = mongoose.model('Routine', routineSchema);
