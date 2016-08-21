@@ -1,10 +1,10 @@
 {
-  "name": "routine1",
-  "version": "0.0.0",
+  "name": "routiner",
+  "version": "0.0.1",
   "author": "Fernando Gómez",
   "private": true,
   "scripts": {
-    "postinstall": "bower install",
+    "postinstall": "node_modules/bower/bin/bower install",
     "start": "node ./app.js"
   },
   "dependencies": {
