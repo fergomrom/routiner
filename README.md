@@ -1,6 +1,6 @@
 # Routiner
 
-Keep a daily schedule can be a hard thing, we all would like to do sport, read or eat properly but at the end we don't do anything. Routiner can help you to write down routines with a given frequency (daily, weekly or monthly) so you can check them as soon as you do them.
+Keeping a daily schedule can be a hard thing, we all would like to do sport, read or eat properly but at the end we don't do anything. Routiner can help you to write down routines with a given frequency (daily, weekly or monthly) so you can check them as soon as you do them.
 
 ![Routiner screenshot](https://github.com/ferkaz/routiner/blob/master/public/img/screenshot1.png?raw=true)
 
@@ -57,6 +57,7 @@ Dockerfile was created thanks to [Bitnami Stacksmith](https://stacksmith.bitnami
 ### To Do
 
  - Add a calendar where you can check the routines you did each day
+ - Add user authentication 
  - Docker MongoDB data persistance
  - Use Travis
  - More...
