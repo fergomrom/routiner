@@ -1,7 +1,7 @@
 {
   "name": "routiner",
   "description": "",
-  "main": "server.js",
+  "main": "app.js",
   "authors": [
     "Fernando Gómez"
   ],

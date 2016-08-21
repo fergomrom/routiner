@@ -4,6 +4,8 @@ Keep a daily schedule can be a hard thing, we all would like to do sport, read o
 
 ![Routiner screenshot](https://github.com/ferkaz/routiner/blob/master/public/img/screenshot1.png?raw=true)
 
+This application is built using AngularJS on the frontend and NodeJS+MongoDB for the backend.
+
 ### Installation
 
 First thing, you need a MongoDB running instance. You can find more information about it on [their official website](https://www.mongodb.com/).

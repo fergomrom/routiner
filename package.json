@@ -5,7 +5,7 @@
   "private": true,
   "scripts": {
     "postinstall": "bower install",
-    "start": "node ./server.js"
+    "start": "node ./app.js"
   },
   "dependencies": {
     "angular": "^1.5.8",
