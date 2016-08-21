@@ -16,7 +16,7 @@ ENV PATH=/opt/bitnami/node/bin:/opt/bitnami/python/bin:$PATH \
 COPY . /app
 WORKDIR /app
 
-RUN npm install
+RUN npm install --ignore-scripts && node_modules/bower/bin/bower --allow-root install
 
 EXPOSE 3000
 CMD ["npm", "start"]
